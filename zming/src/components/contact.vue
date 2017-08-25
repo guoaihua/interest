@@ -24,18 +24,10 @@
 				</div>
 		</form>
 		<div class="footer">
-			<div class="col-md-4">
-				<h1><span class="icon-location"></span>地址</h1>
-				<p>湖北省宜昌市宜都市</p>
+			<div class="col-md-4" v-for="(item,index) in info" :key="index">
+				<h1><span :class="[item[0]]"></span>{{item[1]}}</h1>
+				<p>{{item[2]}}</p>
 			</div>
-			<div class="col-md-4">
-				<h1> <span class="icon-email"></span>EmailMe</h1>
-				<p>308232015@qq.com</p>
-			</div>
-			<div class="col-md-4">
-				<h1><span class="icon-phone"></span>电话</h1>
-				<p>17707170570/13100695760</p>
-			</div>	
 			<div class="clear"></div>		
 		</div>
 	</div>
@@ -52,11 +44,12 @@
 						phone:'',
 						message:''
 					},
+					info:[['icon-location','地址','湖北省宜昌市宜都市'],['icon-email','EmailMe','308232015@qq.com'],['icon-phone','电话','17707170570/13100695760']],
 					count:0
 				}
 			},
 			methods:{
-				submit:function () {
+				submit(){
 						this.users.time=new Date();
 						if(this.count>=3){
 							this.$axios.post('http://www.guoaihua.com:3000/users/saveMessage',this.users).then(function (res) {
@@ -68,7 +61,7 @@
 						}
 
 				},
-				check:function(event){
+				check(event){
 						if(event.currentTarget.value==""){
 							alert("此项不能为空！");
 						}else{
@@ -96,8 +89,6 @@
 		.form-control {
 			background:rgba(255, 255, 255, 0.05);
 		}
-
-
 		.form-group input{
 			margin-bottom: 1rem;
 		}
@@ -106,8 +97,6 @@
 			width: 15%;
 			margin-top: 1rem;
 		}
-
-
 		.disco:hover {
 			-webkit-animation-duration: 2s;
 			-webkit-animation-timing-function: ease-in-out;

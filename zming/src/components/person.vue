@@ -2,19 +2,7 @@
 	<div class="person">
 		<div class="wrap">
 			<div class="cube">
-				<div class="font out"></div>
-				<div class="back out"></div>
-				<div class="top out"></div>
-				<div class="bottom out"></div>
-				<div class="left out"></div>
-				<div class="right out"></div>
-
-				<div class="font-in in"></div>				
-				<div class="back-in in"></div>
-				<div class="top-in in"></div>
-				<div class="bottom-in in"></div>
-				<div class="left-in in"></div>
-				<div class="right-in in"></div>
+				<div v-for="(item,index) in animate" :class="[item]" :key="index"></div>
 				<div class="clear"></div>
 			</div>
 		</div>
@@ -30,13 +18,20 @@
 		</span>
 
 		<span class="stars">
-			<img src="/static/imgs/stars.png" alt="" class=img-responsive>
+			<img src="/static/imgs/stars.png" alt="" class="img-responsive">
 		</span>
 	</div>
 </template>
 
 <script>
-	
+export default{
+	data(){
+		return{
+			animate:["font out","back out","top out","bottom out","left out","right out",
+			"font-in in","back-in in","top-in in","bottom-in in","left-in in","right-in in"]
+		}
+	}
+}	
 </script>
 
 <style scoped>
