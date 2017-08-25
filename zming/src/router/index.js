@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import home from '../components/home'
-import project from '../components/project'
-import article from '../components/article'
-import person from '../components/person'
-import contact from '../components/contact'
+const home = resolve => require(['../components/home'], resolve)
+const project = resolve => require(['../components/project'], resolve)
+const article = resolve => require(['../components/article'], resolve)
+const person = resolve => require(['../components/person'], resolve)
+const contact = resolve => require(['../components/contact'], resolve)
 
 
 Vue.use(Router)
