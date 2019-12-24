@@ -3,41 +3,20 @@
 		<h1 class="text3d">我的项目</h1>
 		<h4 class="address"><a href="https://github.com/guoaihua/main_project" title="https://github.com/guoaihua/main_project">以下项目均在github上发布，打滚求star</a></h4>
 
-	<div class="boxsOne box" @click='showslider'>
-		<div class="col-md-4  shadow"><img src="/static/imgs/project.jpg" alt="" class="img-responsive"><div class="mask">
-			<p>实验室元器件管理</p>
-		</div></div>
-		<div class="col-md-4  shadow"><img src="/static/imgs/project.jpg" alt="" class="img-responsive"><div class="mask">
-			<p>留言板</p>
-		</div></div>
-		<div class="col-md-4 shadow"><img src="/static/imgs/project.jpg" alt="" class="img-responsive"><div class="mask">
-			<p>O2O自助平台</p>
+	<div class="boxsOne box" @click='showslider' v-for="(project,index) in projects" :key="index">
+		<div class="col-md-4  shadow" v-for="(item,index) in project" :key="index"><img src="/static/imgs/project.jpg" alt="" class="img-responsive"><div class="mask">
+			<p>{{item}}</p>
 		</div></div>
 		<div class="clear"></div>
 	</div>
 
-	<div class="boxsTwo box" @click='showslider'>
-		<div class="col-md-4 shadow"><img src="/static/imgs/project.jpg" alt="" class="img-responsive"><div class="mask">
-			<p>网络聊天室</p>
-		</div></div>
-		<div class="col-md-4 shadow"><img src="/static/imgs/project.jpg" alt="" class="img-responsive"><div class="mask">
-			<p>网络爬虫</p>
-		</div></div>
-		<div class="col-md-4 shadow"><img src="/static/imgs/project.jpg" alt="" class="img-responsive"><div class="mask">
-			<p>仿网易云音乐</p>
-		</div></div>
-		<div class="clear"></div>
-	</div>
+
 	<div class="clear"></div>	
 
 	<div class="swipebox-container" v-show="boxshow">
 		<div class="swipebox-slider">
 			<div class="slider current"><img src="/static/imgs/propic1.png" alt="" class="img-responsive"></div>
-			<div class="slider"><img src="/static/imgs/propic2.png" alt="" class="img-responsive"></div>
-			<div class="slider"><img src="/static/imgs/propic3.png" alt="" class="img-responsive"></div>
-			<div class="slider"><img src="/static/imgs/propic4.png" alt="" class="img-responsive"></div>
-			<div class="slider"><img src="/static/imgs/propic5.png" alt="" class="img-responsive"></div>
-			<div class="slider"><img src="/static/imgs/propic6.png" alt="" class="img-responsive"></div>
+			<div class="slider" v-for="(item,index) in propics" :key="index"><img :src="item" alt="" class="img-responsive"></div>
 		</div>
 		<div class="arrows">
 			<span class="arrows-left" @click="prev"></span>
@@ -55,17 +34,19 @@
 		data(){
 			return{
 				boxshow:false,
-				index:0
+				index:0,
+				projects:[['实验室元器件管理','留言板','O2O自助平台'],['网络聊天室','网络爬虫','仿网易云音乐']],		
+		        propics:['/static/imgs/propic2.png','/static/imgs/propic3.png','/static/imgs/propic4.png','/static/imgs/propic5.png','/static/imgs/propic6.png']	
 			}		
 		},
 		methods:{
-			showslider:function () {
+			showslider () {
 				this.boxshow=!this.boxshow;
 			},
-			closeslider:function () {
+			closeslider () {
 				this.boxshow=!this.boxshow;
 			},
-			prev:function () {			
+			prev() {			
 				if(this.index<=0){
 					this.index=0;
 				}else{
@@ -77,7 +58,7 @@
 
 				console.log(this.index);
 			},
-			next:function(){
+			next(){
 				if(this.index>=5){
 					this.index=5;
 				}else{
